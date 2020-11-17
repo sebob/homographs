@@ -1,0 +1,16 @@
+*.so
+lib/
+*.egg-info/
+htmlcov/
+.coverage
+.cache
+coverage.xml
+venv/
+[Bb]in
+[Ii]nclude
+[Ll]ib
+pip-selfcheck.json
+.env/
+.idea/
+__pycache__
+
