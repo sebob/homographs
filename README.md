@@ -41,7 +41,7 @@ domain:
 
 ## Example:
 
-```python homo.py -d olx.pl ```
+```python homo.py -d olx.com ```
 ```
 sign: o, 0lx.com => 0lx.com [['69.172.201.208']], None
 sign: o, ọlx.com => xn--lx-58s.com [['198.54.117.197', '198.54.117.198', '198.54.117.200', '198.54.117.199']], None
