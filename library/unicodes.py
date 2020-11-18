@@ -11,7 +11,9 @@ class Unicodes:
         self.url_extract = tldextract.extract(self.url.lower())
         self.full_url = self.domain = self.url_extract.domain
         self.chars = []
-        self.unicodes = {
+
+        # copy & past from https://github.com/elceef/dnstwist/blob/e7857e7e63def12cc457a96dc76cf405c614a85e/dnstwist.py#L244
+        self.glyphs = {
             'a': [u'à', u'á', u'â', u'ã', u'ä', u'å', u'ɑ', u'ạ', u'ǎ', u'ă', u'ȧ', u'ą'],
             'b': ['d', 'lb', u'ʙ', u'ɓ', u'ḃ', u'ḅ', u'ḇ', u'ƅ'],
             'c': ['e', u'ƈ', u'ċ', u'ć', u'ç', u'č', u'ĉ'],
@@ -39,20 +41,20 @@ class Unicodes:
             'z': [u'ʐ', u'ż', u'ź', u'ᴢ', u'ƶ', u'ẓ', u'ẕ', u'ⱬ']
         }
 
-        for char in self.unicodes:
+        for char in self.glyphs:
             if char in self.domain:
                 self.chars.append(char)
 
     def get_unicodes(self):
-        return self.unicodes
+        return self.glyphs
 
     def gen(self):
         full_url = self.full_url
 
         for char in self.domain:
-            if char in self.unicodes:
-                full_url = full_url.replace(char, "[{} x {}]".format(char, len(self.unicodes[char])))
-                special_chars = self.unicodes[char]
+            if char in self.glyphs:
+                full_url = full_url.replace(char, "[{} x {}]".format(char, len(self.glyphs[char])))
+                special_chars = self.glyphs[char]
                 for special_char in special_chars:
                     full_domain = "{}.{}".format(
                         idna.encode(self.domain.replace(char, "{}".format(special_char)), uts46=True).decode('utf8'),
@@ -64,7 +66,7 @@ class Unicodes:
                         hopp = '?'
 
                     if self.show_all:
-                        print("CHAR: {}, {}.{} => {} [{}], {}".format(
+                        print("sign: {}, {}.{} => {} [{}], {}".format(
                             char,
                             self.domain.replace(char, "{}".format(special_char)),
                             self.url_extract.suffix,
@@ -73,7 +75,7 @@ class Unicodes:
                             hopp
                         ))
                     elif ip:
-                        print("CHAR: {}, {}.{} => {} [{}], {}".format(
+                        print("sign: {}, {}.{} => {} [{}], {}".format(
                             char,
                             self.domain.replace(char, "{}".format(special_char)),
                             self.url_extract.suffix,
@@ -87,7 +89,7 @@ class Unicodes:
         random_special_char = []
         for char in self.chars:
             if char in self.domain:
-                random_special_char.append([char, random.choice(self.unicodes[char])])
+                random_special_char.append([char, random.choice(self.glyphs[char])])
 
         domain = self.domain
 

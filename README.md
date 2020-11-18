@@ -41,7 +41,14 @@ domain:
 
 ## Example:
 
-```python homo.py -d google.com ```
+```python homo.py -d olx.pl ```
+```
+sign: o, 0lx.com => 0lx.com [['69.172.201.208']], None
+sign: o, ọlx.com => xn--lx-58s.com [['198.54.117.197', '198.54.117.198', '198.54.117.200', '198.54.117.199']], None
+sign: l, oix.com => oix.com [['34.102.136.180']], None
+sign: l, ołx.com => xn--ox-xqa.com [['78.108.180.224']], None
+
+```
 
 ```python homo.py -d google.com -v ```
 
