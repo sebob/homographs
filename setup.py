@@ -12,7 +12,7 @@ setup(
     ],
     install_requires=[
         'requests == 2.25.0',
-        'tldextract == 3.0.2'
+        'tldextract == 3.0.2',
         'idna == 2.10',
         'pysocks == 1.7.1'
     ],
